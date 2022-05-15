@@ -1,12 +1,10 @@
 package utils;
 
-import PageObjects.LoginPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
+import base.BasePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.io.FileInputStream;
 import java.util.Properties;
 
@@ -42,16 +40,19 @@ public class DriverFactory
             e.printStackTrace();
         }
 
+
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
 
+        BasePage.initpages();
+
         return driver;
     }
 
 
-    public static void teardown()
+    public static void tearDown()
     {
         driver.quit();
     }
